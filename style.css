@@ -1,0 +1,16 @@
+/* Montserrat And Lato */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+/* font-family: 'Lato', sans-serif; */
+
+/* some universal properties */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+
