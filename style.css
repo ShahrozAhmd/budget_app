@@ -4,24 +4,24 @@
 /* font-family: 'Lato', sans-serif; */
 
 /* some universal properties */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
 
-   
+
 }
 
-.main-container{
+.main-container {
 
     width: 80%;
     height: 80vh;
@@ -29,89 +29,155 @@ body{
     box-shadow: 0px 2px 11px -1px rgb(97, 108, 111);
     display: grid;
     grid-template-rows: 15% 1fr;
-    grid-template-columns:1fr 30% 1fr;
+    grid-template-columns: 1fr 30% 1fr;
 }
 
-.get-data{
+/* [start] All CSS of container of getting input from user */
+
+.get-data {
     height: 80px;
-    /* border: 1px solid black;  */
-    grid-column: 1/-1;  
-    /* background-color: aqua;  */
+    grid-column: 1/-1;
+
 }
 
-.get-data-flex{
-    
+.get-data-flex {
+
     height: inherit;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    
+
 }
 
-.get-data-element{
+.get-data-element {
     padding: 1%;
     border: none;
-    /* margin: 1%; */
 
 }
 
-.des-box{
+.des-box {
     width: 40%;
     background-color: #DAE0E2;
 }
-.des-box:focus{
+
+.des-box:focus {
     border: 1px solid #DAE0E2;
     outline: none;
 }
-.add-btn{
+
+.add-btn {
     width: 10%;
     border-radius: 0px 10px 10px 0px;
-    /* background-color: #2C3335; */
-    background: rgb(97,108,111);
-    background: linear-gradient(90deg, rgba(97,108,111,1) 0%, rgba(44,51,53,1) 39%);
+    background: rgb(97, 108, 111);
+    background: linear-gradient(90deg, rgba(97, 108, 111, 1) 0%, rgba(44, 51, 53, 1) 39%);
     color: whitesmoke;
     font-size: 0.8em;
     font-weight: 600;
     outline: none;
     cursor: pointer;
 }
-.value-box{
+
+.value-box {
     width: 10%;
     background-color: rgb(230, 234, 235);
-   
+
 }
-.value-box:focus{
+
+.value-box:focus {
     border: 1px solid #DAE0E2;
     outline: none;
 }
-.select-box{
+
+.select-box {
     border-radius: 10px 0px 0px 10px;
-    /* background: rgb(44,51,53); */
-    background: linear-gradient(90deg, rgba(44,51,53,1) 37%, rgba(97,108,111,1) 100%);
+    background: linear-gradient(90deg, rgba(44, 51, 53, 1) 37%, rgba(97, 108, 111, 1) 100%);
     color: whitesmoke;
     outline: none;
     cursor: pointer;
 }
-option{
+
+option {
     color: black;
 }
 
+/* [End] All CSS of container of getting input from user */
 
+
+/* these styles are just to visible layout */
+.show-data {
+    
+    /* background-color: bisque; */
+}
+
+.income-box {
+    /* background-color: chartreuse; */
+}
+
+.expense-box {
+    /* background-color: yellow; */
+}
+/* --------------------------------------- */
+
+
+/* [START] All CSS for showing calculated data  */
 .show-data{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.show-data *{
     /* border: 1px solid black; */
-    background-color: bisque;  
+    text-align: center;
+    border: none;
+}
+.cd{
+    padding: 10%;
+    width:80%;
+    /* border: 1px solid grey; */
+    border-radius: 6px;
+    /* box-shadow: 0px 2px 11px -1px rgb(143, 238, 236); */
+
+}
+.calculated-income{
+    background-color: rgb(143, 238, 236);
+    box-shadow: 0px 2px 11px -1px rgb(143, 238, 236);
+    /* color: #2C3335; */
+    color: white;
+    text-shadow: 0px 2px 3px #616C6F;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8em;
+    
+}
+.calculated-expense{
+    background-color: rgb(250, 142, 125);
+    box-shadow: 0px 2px 11px -1px rgb(250, 142, 125);
+    color: white;
+    text-shadow: 0px 2px 3px #616C6F;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8em;
+}
+.small-percentage-show{
+    font-size: 0.5em;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: rgb(253, 251, 251);
+    opacity: 0.5;
+    color: black;
 }
 
-.log{
+.amount-left{
+    font-family: 'Lato', sans-serif;
+    background-color: rgb(245, 201, 107);
+    box-shadow: 0px 2px 11px -1px rgb(245, 201, 107);
+    color: white;
+    text-shadow: 0px 2px 3px #616C6F;
+    
+  
+}
+.date{
+    font-family: 'Lato', sans-serif;
 
-    /* border: 1px solid black;   */
 }
 
-.income-box{
-    background-color: chartreuse;
-}
-.expense-box{
-    background-color:yellow ;
-}
-
+/* [END] All CSS for showing calculated data  */

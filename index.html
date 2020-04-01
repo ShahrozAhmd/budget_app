@@ -2,64 +2,65 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- font awesome library cdn link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- css animation library -->
-    <link rel="stylesheet" href="animate.css">
-    <link rel="stylesheet" href="./magic-master/dist/magic.min.css">
+    <link rel="stylesheet" href="animate.css" />
+    <link rel="stylesheet" href="./magic-master/dist/magic.min.css" />
     <!-- custom css -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <title>Budget App</title>
-
 </head>
 
 <body>
-
-
     <div class="main-container">
-
-
         <!-- This container is for getting input from user -->
         <div class="get-data">
             <div class="get-data-flex">
-
                 <select class="get-data-element select-box" name="" id="">
                     <option value="">--</option>
                     <option value="">+</option>
                     <option value="">-</option>
                 </select>
 
-                <input class="get-data-element des-box" type="text" name="" id="" placeholder="Description">
-                <input class="get-data-element value-box" type="number" name="" id="" placeholder="Amount">
-                <button class="get-data-element add-btn"> <i class = "fa fa-plus-circle" style="padding: 2px;"></i>Add</button>
+                <input class="get-data-element des-box" type="text" name="" id="" placeholder="Description" />
+                <input class="get-data-element value-box" type="number" name="" id="" placeholder="Amount" />
+                <button class="get-data-element add-btn">
+                    <i class="fa fa-plus-circle" style="padding: 2px;"></i>Add
+                </button>
             </div>
         </div>
 
+        <!-- This container is for Showing all incomes added -->
+        <div class="income-box log"></div>
 
         <!-- This container is for showing calculated data -->
         <div class="show-data">
+            <i class="fa fa-calendar"></i> <h4 class="date">April 1, 2020</h4>
 
+            <div class="cd calculated-income magictime swap">
+                <h2>INCOME <i class="fa fa-smile-o"></i></h2>
+                <h3><span>+</span> 12344</h3>
+            </div>
+
+            <div class="cd amount-left magictime slideDownReturn">
+              <i class="fa fa-money fa-2x"></i> 
+              <h2>MONEY LEFT</i>
+              <h2>34566</h2>
+            </div>
+
+            <div class="cd calculated-expense magictime swap">
+                <h2>EXPENSE <i class="fa fa-frown-o"></i></h2>
+                <h3><span>-</span> 094847 <span class="small-percentage-show">20%</span></h3>
+            </div>
 
         </div>
-
-
-        <!-- This container is for Showing all incomes added -->
-        <div class="income-box log">
-
-        </div>
-
-
 
         <!-- This container is for showing all expenses -->
-        <div class="expense-box log">
-
-        </div>
-
-
+        <div class="expense-box log"></div>
     </div>
-
 
     <!-- custom javascript -->
     <script src="./script.js"></script>
