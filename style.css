@@ -8,47 +8,110 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body{
     display: flex;
-    /* border: 10px solid lightgray; */
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
-   
 
+   
 }
 
 .main-container{
 
-    /* border: 1px solid grey; */
     width: 80%;
     height: 80vh;
     border-radius: 6px;
     box-shadow: 0px 2px 11px -1px rgb(97, 108, 111);
-    /* display: flex;
-    justify-content: center; */
     display: grid;
-    grid-template-rows: 80px 1fr;
-    grid-template-columns: 30% 1fr 1fr;
+    grid-template-rows: 15% 1fr;
+    grid-template-columns:1fr 30% 1fr;
 }
 
 .get-data{
     height: 80px;
-    /* width: 90%; */
-    border: 1px solid black; 
-    grid-column: 1/-1;   
+    /* border: 1px solid black;  */
+    grid-column: 1/-1;  
+    /* background-color: aqua;  */
 }
+
+.get-data-flex{
+    
+    height: inherit;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+}
+
+.get-data-element{
+    padding: 1%;
+    border: none;
+    /* margin: 1%; */
+
+}
+
+.des-box{
+    width: 40%;
+    background-color: #DAE0E2;
+}
+.des-box:focus{
+    border: 1px solid #DAE0E2;
+    outline: none;
+}
+.add-btn{
+    width: 10%;
+    border-radius: 0px 10px 10px 0px;
+    /* background-color: #2C3335; */
+    background: rgb(97,108,111);
+    background: linear-gradient(90deg, rgba(97,108,111,1) 0%, rgba(44,51,53,1) 39%);
+    color: whitesmoke;
+    font-size: 0.8em;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+.value-box{
+    width: 10%;
+    background-color: rgb(230, 234, 235);
+   
+}
+.value-box:focus{
+    border: 1px solid #DAE0E2;
+    outline: none;
+}
+.select-box{
+    border-radius: 10px 0px 0px 10px;
+    /* background: rgb(44,51,53); */
+    background: linear-gradient(90deg, rgba(44,51,53,1) 37%, rgba(97,108,111,1) 100%);
+    color: whitesmoke;
+    outline: none;
+    cursor: pointer;
+}
+option{
+    color: black;
+}
+
 
 .show-data{
 
-    border: 1px solid black;  
+    /* border: 1px solid black; */
+    background-color: bisque;  
 }
 
 .log{
 
-    border: 1px solid black;  
+    /* border: 1px solid black;   */
+}
+
+.income-box{
+    background-color: chartreuse;
+}
+.expense-box{
+    background-color:yellow ;
 }
 
