@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-.body{
+body{
     display: flex;
     /* border: 10px solid lightgray; */
     justify-content: center;
@@ -23,9 +23,32 @@
 
 .main-container{
 
-    /* border: 1px solid grey\; */
+    /* border: 1px solid grey; */
     width: 80%;
     height: 80vh;
     border-radius: 6px;
-    box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.86);
+    box-shadow: 0px 2px 11px -1px rgb(97, 108, 111);
+    /* display: flex;
+    justify-content: center; */
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 30% 1fr 1fr;
 }
+
+.get-data{
+    height: 80px;
+    /* width: 90%; */
+    border: 1px solid black; 
+    grid-column: 1/-1;   
+}
+
+.show-data{
+
+    border: 1px solid black;  
+}
+
+.log{
+
+    border: 1px solid black;  
+}
+
