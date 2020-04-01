@@ -29,7 +29,8 @@ body {
     box-shadow: 0px 2px 11px -1px rgb(97, 108, 111);
     display: grid;
     grid-template-rows: 15% 1fr;
-    grid-template-columns: 1fr 30% 1fr;
+    grid-template-columns: 35% 30% 35%;
+    padding: 1%;
 }
 
 /* [start] All CSS of container of getting input from user */
@@ -58,12 +59,10 @@ body {
 .des-box {
     width: 40%;
     background-color: #DAE0E2;
-}
-
-.des-box:focus {
     border: 1px solid #DAE0E2;
     outline: none;
 }
+
 
 .add-btn {
     width: 10%;
@@ -80,12 +79,9 @@ body {
 .value-box {
     width: 10%;
     background-color: rgb(230, 234, 235);
-
-}
-
-.value-box:focus {
-    border: 1px solid #DAE0E2;
+    border: 1px solid rgb(230, 234, 235);
     outline: none;
+
 }
 
 .select-box {
@@ -136,13 +132,11 @@ option {
     width:80%;
     /* border: 1px solid grey; */
     border-radius: 6px;
-    /* box-shadow: 0px 2px 11px -1px rgb(143, 238, 236); */
-
+   
 }
 .calculated-income{
     background-color: rgb(143, 238, 236);
     box-shadow: 0px 2px 11px -1px rgb(143, 238, 236);
-    /* color: #2C3335; */
     color: white;
     text-shadow: 0px 2px 3px #616C6F;
     font-family: 'Lato', sans-serif;
@@ -179,5 +173,101 @@ option {
     font-family: 'Lato', sans-serif;
 
 }
-
 /* [END] All CSS for showing calculated data  */
+
+
+/* [START] All CSS for income list and expense list */
+
+.ie-flex{
+    display: flex;
+    width: 100%;
+    height: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    
+}
+
+.income-box *{
+    /* border: 1px solid gray; */
+}
+.ie-bar{
+    margin: 1%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 4%;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0px 2px 3px #616C6F;
+    background: linear-gradient(90deg, rgba(2,108,47,1) 8%, rgba(46,204,114,1) 62%);
+    color: white;
+
+}
+.ie-bar-des{
+    flex-grow: 2;
+    max-width: inherit;
+    overflow: hidden;
+    font-size: 0.8em;
+}
+.ie-value,.ie-sno{
+    font-size: 0.8em;
+}
+.ie-cross-btn{
+    cursor: pointer;
+}
+.expense-only{
+    background: linear-gradient(90deg, rgba(186,47,22,1) 32%, rgba(228,66,54,1) 53%);
+}
+
+
+
+/* Media Querries */
+@media(max-width:768px){
+.all-income-h1, .all-expense-h1{
+    font-size: 0.9em;
+}
+
+.calculated-income,.calculated-expense{
+    font-size: 0.6em;
+}
+
+
+}
+
+@media(max-width:425px){
+    
+    .main-container{
+        grid-template-rows: repeat(4,1fr);
+        grid-template-columns: 1fr;
+        overflow: scroll;
+    }
+    .show-data{
+        grid-row: 2/3;
+    }
+    .get-data-flex{
+        flex-direction: column;
+        /* justify-content: center;
+        align-items: center; */
+        padding: 15%;
+    }
+    .get-data-element{
+        width: 85%;
+        border-radius: 4px;
+        text-align: center;
+        margin: 2px;
+    }
+    .show-data{
+        margin-top:25px ;
+    }
+    .amount-left{
+        font-size: 0.8em;
+    }
+   .ie-bar{
+       margin-right: 4%;
+   }
+   /* Landscape mode of all devices is not inlcuded */
+   
+
+}
