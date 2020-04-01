@@ -267,6 +267,10 @@ option {
    .ie-bar{
        margin-right: 4%;
    }
+   .main-container{
+       width: 90%;
+       height: 90vh;
+   }
    /* Landscape mode of all devices is not inlcuded */
    
 
