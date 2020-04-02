@@ -299,6 +299,9 @@ option {
     overflow: scroll;
     margin-top: 5%;
   }
+  .cd{
+    padding: 4%;
+  }
   
 
   /* Media query for Landscape mode of all devices is not inlcuded */
