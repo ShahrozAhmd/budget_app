@@ -266,8 +266,6 @@ option {
 
   .get-data-flex {
     flex-direction: column;
-    /* justify-content: center;
-        align-items: center; */
     padding: 15%;
   }
 
@@ -297,8 +295,11 @@ option {
     box-shadow: none;
   }
   .log {
-    overflow: visible;
+    height: 30vh;
+    overflow: scroll;
+    margin-top: 5%;
   }
+  
 
   /* Media query for Landscape mode of all devices is not inlcuded */
 }
