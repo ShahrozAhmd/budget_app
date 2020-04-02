@@ -28,7 +28,7 @@ body {
     border-radius: 6px;
     box-shadow: 0px 2px 11px -1px rgb(97, 108, 111);
     display: grid;
-    grid-template-rows: 15% 1fr;
+    grid-template-rows: 15% 85%;
     grid-template-columns: 35% 30% 35%;
     padding: 1%;
 }
@@ -101,7 +101,7 @@ option {
 
 /* these styles are just to visible layout */
 .show-data {
-    
+
     /* background-color: bisque; */
 }
 
@@ -112,38 +112,43 @@ option {
 .expense-box {
     /* background-color: yellow; */
 }
+
 /* --------------------------------------- */
 
 
 /* [START] All CSS for showing calculated data  */
-.show-data{
+.show-data {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
-.show-data *{
+
+.show-data * {
     /* border: 1px solid black; */
     text-align: center;
     border: none;
 }
-.cd{
+
+.cd {
     padding: 10%;
-    width:80%;
+    width: 80%;
     /* border: 1px solid grey; */
     border-radius: 6px;
-   
+
 }
-.calculated-income{
+
+.calculated-income {
     background-color: rgb(143, 238, 236);
     box-shadow: 0px 2px 11px -1px rgb(143, 238, 236);
     color: white;
     text-shadow: 0px 2px 3px #616C6F;
     font-family: 'Lato', sans-serif;
     font-size: 0.8em;
-    
+
 }
-.calculated-expense{
+
+.calculated-expense {
     background-color: rgb(250, 142, 125);
     box-shadow: 0px 2px 11px -1px rgb(250, 142, 125);
     color: white;
@@ -151,7 +156,8 @@ option {
     font-family: 'Lato', sans-serif;
     font-size: 0.8em;
 }
-.small-percentage-show{
+
+.small-percentage-show {
     font-size: 0.5em;
     font-weight: 600;
     border-radius: 4px;
@@ -160,39 +166,46 @@ option {
     color: black;
 }
 
-.amount-left{
+.amount-left {
     font-family: 'Lato', sans-serif;
     background-color: rgb(245, 201, 107);
     box-shadow: 0px 2px 11px -1px rgb(245, 201, 107);
     color: white;
     text-shadow: 0px 2px 3px #616C6F;
-    
-  
+
+
 }
-.date{
+
+.date {
     font-family: 'Lato', sans-serif;
 
 }
+
 /* [END] All CSS for showing calculated data  */
 
 
 /* [START] All CSS for income list and expense list */
 
-.ie-flex{
+.ie-flex {
     display: flex;
     width: 100%;
-    height: inherit;
+    /* height: 85%; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 2%;
-    
+    /* overflow: scroll; */
+
+}
+.log{
+    overflow: scroll;
 }
 
-.income-box *{
+.income-box * {
     /* border: 1px solid gray; */
 }
-.ie-bar{
+
+.ie-bar {
     margin: 1%;
     display: flex;
     width: 100%;
@@ -201,77 +214,95 @@ option {
     align-items: center;
     border-radius: 6px;
     box-shadow: 0px 2px 3px #616C6F;
-    background: linear-gradient(90deg, rgba(2,108,47,1) 8%, rgba(46,204,114,1) 62%);
+    background: linear-gradient(90deg, rgba(2, 108, 47, 1) 8%, rgba(46, 204, 114, 1) 62%);
     color: white;
 
 }
-.ie-bar-des{
+
+.ie-bar-des {
     flex-grow: 2;
     max-width: inherit;
     overflow: hidden;
     font-size: 0.8em;
 }
-.ie-value,.ie-sno{
+
+.ie-value,
+.ie-sno {
     font-size: 0.8em;
 }
-.ie-cross-btn{
+
+.ie-cross-btn {
     cursor: pointer;
 }
-.expense-only{
-    background: linear-gradient(90deg, rgba(186,47,22,1) 32%, rgba(228,66,54,1) 53%);
+
+.expense-only {
+    background: linear-gradient(90deg, rgba(186, 47, 22, 1) 32%, rgba(228, 66, 54, 1) 53%);
 }
 
 
 
 /* Media Querries */
-@media(max-width:768px){
-.all-income-h1, .all-expense-h1{
-    font-size: 0.9em;
+@media(max-width:768px) {
+
+    .all-income-h1,
+    .all-expense-h1 {
+        font-size: 0.9em;
+    }
+
+    .calculated-income,
+    .calculated-expense {
+        font-size: 0.6em;
+    }
+
+
 }
 
-.calculated-income,.calculated-expense{
-    font-size: 0.6em;
-}
+@media(max-width:425px) {
 
-
-}
-
-@media(max-width:425px){
-    
-    .main-container{
-        grid-template-rows: repeat(4,1fr);
+    .main-container {
+        grid-template-rows: repeat(4, 1fr);
         grid-template-columns: 1fr;
         overflow: scroll;
     }
-    .show-data{
+
+    .show-data {
         grid-row: 2/3;
     }
-    .get-data-flex{
+
+    .get-data-flex {
         flex-direction: column;
         /* justify-content: center;
         align-items: center; */
         padding: 15%;
     }
-    .get-data-element{
+
+    .get-data-element {
         width: 85%;
         border-radius: 4px;
         text-align: center;
         margin: 2px;
     }
-    .show-data{
-        margin-top:25px ;
+
+    .show-data {
+        margin-top: 25px;
     }
-    .amount-left{
+
+    .amount-left {
         font-size: 0.8em;
     }
-   .ie-bar{
-       margin-right: 4%;
-   }
-   .main-container{
-       width: 90%;
-       height: 90vh;
-   }
-   /* Landscape mode of all devices is not inlcuded */
-   
+
+    .ie-bar {
+        margin-right: 4%;
+    }
+
+    .main-container {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        box-shadow: none;
+    }
+
+    /* Landscape mode of all devices is not inlcuded */
+
 
 }
