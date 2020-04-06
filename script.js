@@ -32,19 +32,21 @@ var budgetController = (function () {
       totalExpense: 0
     }
   };
- 
+
 
   return {
     generateItem: function (type, desc, val) {
 
-      var addItem, ID; //id would be last element + 1
+      var addItem, ID;  //id would be last element + 1
 
       if (data.allIncExp[type].length > 0) {
-        ID = data.allIncExp[type][data.allIncExp[type] - 1].id + 1;
+         ID = data.allIncExp[type][data.allIncExp[type].length - 1].id + 1;
       } else {
         ID = 0;
 
       }
+
+
       if (type === 'inc') {
 
         addItem = new Incomes(ID, desc, val)
@@ -59,7 +61,7 @@ var budgetController = (function () {
 
     },
 
-    test:function(){
+    test: function () {
       return data;
     }
   }
@@ -78,7 +80,9 @@ var UIController = (function () {
     type: ".select-box",
     description: ".des-box",
     value: ".value-box",
-    addBtn: ".add-btn"
+    addBtn: ".add-btn",
+    incomeContainer: '.income-container', 
+    expenseContainer: '.expense-container',
   };
 
   return {
@@ -93,6 +97,34 @@ var UIController = (function () {
     },
     dataClasses: function () {
       return getDataClasses;
+    },
+    addListItems: function (obj, type) {
+
+      var html,htmlElement;
+        if (type === 'inc') {
+          htmlElement = getDataClasses.incomeContainer;
+          html =
+          `<div class="ie-bar" id = "income-${obj.id}">
+        <span class="ie-sno">${obj.id}</span>
+        <h3 class="ie-bar-des">${obj.desc}</h3>
+        <h4 class="ie-value">${obj.val}</h4>
+        <span class="ie-cross-btn"><i class="fa fa-times-circle" style="padding: 2px;"></i></span>
+        </div>`;
+        
+      }else if(type === 'exp'){
+        htmlElement = getDataClasses.expenseContainer;
+          html = 
+          `<div class="ie-bar expense-only id="expense-${obj.id}">
+            <span class="ie-sno">${obj.id}</span>
+            <h3 class="ie-bar-des">${obj.desc}</h3>
+            <span class="small-percentage-show">20%</span>
+            <h4 class="ie-value">${obj.val}</h4>
+            <span class="ie-cross-btn"><i class="fa fa-times-circle" style="padding: 2px;"></i></span>
+          </div>`;
+        }
+        document.querySelector(htmlElement).insertAdjacentHTML('beforeend',html);
+
+
     }
   };
 })();
@@ -126,6 +158,7 @@ var trigger = (function (budgetCtrl, UICtrl) {
     var newItem = budgetCtrl.
     generateItem(inputValues.type, inputValues.description, inputValues.value);
     // 3. Add new item to the UI.
+    UICtrl.addListItems(newItem,inputValues.type);
     // 4. Calculate the budget.
     // 5. Update the budget on UI
   };
