@@ -9,6 +9,21 @@ var budgetController = (function () {
     this.id = id;
     this.desc = description;
     this.val = value;
+    this.percentage = -1;
+  }
+
+  Expenses.prototype.calcPercentage = function (totalIncome) {
+    if (totalIncome > 0) {
+      this.percentage = Math.round((this.val / totalIncome) * 100);
+    }
+    else{
+      this.percentage = -1;
+    }
+
+  }
+
+  Expenses.prototype.getPercentage = function(){
+    return this.percentage;
   }
 
 
@@ -88,6 +103,19 @@ var budgetController = (function () {
 
     },
 
+    calculatePercentages: function () {
+
+      data.allIncExp.exp.forEach(function(curr){
+        curr.calcPercentage(data.totals.inc);
+      });
+    },
+
+    getPercentages: function(){
+      var allPerc = data.allIncExp.exp.map(function(curr){
+        return curr.getPercentage();
+      });
+      return allPerc;
+    },
 
     calculateBudget: function () {
 
@@ -247,12 +275,16 @@ var trigger = (function (budgetCtrl, UICtrl) {
 
   }
 
-  function updatePercentages(){
+  function updatePercentages() {
+    
     // calculate percentages
+    budgetCtrl.calculatePercentages();
 
     //read the percentages from the budget controller
-
+    var percArr = budgetCtrl.getPercentages();
+    
     //update the percentages on UI
+    console.log(percArr);
   }
 
 
@@ -289,7 +321,8 @@ var trigger = (function (budgetCtrl, UICtrl) {
       //4. Update the budget
       updateBudget();
       //5. show updated percentages
-      
+      updatePercentages();
+
 
     }
   };
