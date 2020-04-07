@@ -32,7 +32,7 @@ var budgetController = (function () {
       exp: 0
     },
 
-    budget : 0,
+    budget: 0,
     percentage: -1
   };
 
@@ -71,6 +71,24 @@ var budgetController = (function () {
 
     },
 
+    //to delete an item from the data structure
+    deleteItem: function (type, id) {
+      //get the id no. of the item want to dete then find its place in data structure, then delete it
+      var index;
+      var ids = data.allIncExp[type].map(function (curr) {
+        return curr.id;
+      });
+
+      index = ids.indexOf(id);
+      if (index != -1) {
+        data.allIncExp[type].splice(index, 1);
+      }
+
+
+
+    },
+
+
     calculateBudget: function () {
 
       // calculate total income and total expense
@@ -81,22 +99,23 @@ var budgetController = (function () {
       data.budget = data.totals.inc - data.totals.exp;
 
       // calculate the percentage, of income that we spent in form of expenses
-      if (data.totals.inc > 0){
-      data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
-      }else{
+      if (data.totals.inc > 0) {
+        data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+      } else {
         data.percentage = -1
       }
     },
 
     //Return the values of our data structure for our  update budget function
-    getBudget: function(){
-      return{
+    getBudget: function () {
+      return {
         actualBudget: data.budget,
         totalIncome: data.totals.inc,
         totalExpense: data.totals.exp,
         percentage: data.percentage
       }
-    }
+    },
+
 
 
 
@@ -122,7 +141,8 @@ var UIController = (function () {
     moneyLeft: '.money-left',
     totalIncome: '.total-income',
     totalExpense: '.total-expense',
-    totalExpPer: '.total-exp-per'
+    totalExpPer: '.total-exp-per',
+    mainContainer: '.main-container'
   };
 
   return {
@@ -144,7 +164,7 @@ var UIController = (function () {
       if (type === 'inc') {
         htmlElement = getDataClasses.incomeContainer;
         html =
-          `<div class="ie-bar magictime boingInUp" id = "income-${obj.id}">
+          `<div class="ie-bar magictime boingInUp" id = "inc-${obj.id}">
         <span class="ie-sno">${obj.id}. </span>
         <h3 class="ie-bar-des">${obj.desc}</h3>
         <h4 class="ie-value">${obj.val}</h4>
@@ -154,7 +174,7 @@ var UIController = (function () {
       } else if (type === 'exp') {
         htmlElement = getDataClasses.expenseContainer;
         html =
-          `<div class="ie-bar magictime boingInUp expense-only id="expense-${obj.id}">
+          `<div class="ie-bar magictime boingInUp expense-only" id ="exp-${obj.id}">
             <span class="ie-sno">${obj.id}. </span>
             <h3 class="ie-bar-des">${obj.desc}</h3>
             <span class="small-percentage-show">20%</span>
@@ -172,16 +192,21 @@ var UIController = (function () {
       });
       fieldData[0].focus();
     },
-    displayBudget: function(obj){
+    displayBudget: function (obj) {
       document.querySelector(getDataClasses.moneyLeft).textContent = obj.actualBudget;
-      document.querySelector(getDataClasses.totalIncome).textContent = obj.totalIncome;
-      document.querySelector(getDataClasses.totalExpense).textContent = obj.totalExpense;
-      if(obj.percentage > 0){
-      document.querySelector(getDataClasses.totalExpPer).textContent = obj.percentage+" %";
-      }
-      else{
+      document.querySelector(getDataClasses.totalIncome).textContent = "+ " + obj.totalIncome;
+      document.querySelector(getDataClasses.totalExpense).textContent = "- " + obj.totalExpense;
+      if (obj.percentage > 0) {
+        document.querySelector(getDataClasses.totalExpPer).textContent = obj.percentage + " %";
+      } else {
         document.querySelector(getDataClasses.totalExpPer).textContent = "--";
       }
+    },
+    delListItem: function (selectorID) {
+
+      var el = document.getElementById(selectorID);
+      el.parentNode.removeChild(el);
+
     }
   };
 })();
@@ -195,6 +220,7 @@ var trigger = (function (budgetCtrl, UICtrl) {
     //store the passed data of class names of UI elements
     var dataCl = UICtrl.dataClasses();
 
+
     document.querySelector(dataCl.addBtn)
       .addEventListener("click", triggerCtrl);
 
@@ -203,18 +229,46 @@ var trigger = (function (budgetCtrl, UICtrl) {
         triggerCtrl();
       }
     });
+
+    document.querySelector(dataCl.mainContainer).addEventListener('click', ctrlDeleteItem)
   };
+
+
 
   function updateBudget() {
     // 1. Calculate the budget.
     budgetCtrl.calculateBudget();
 
     // 2. Return the budget
-    var budget  = budgetCtrl.getBudget();
+    var budget = budgetCtrl.getBudget();
 
     // 3. Update the budget in UI
     UICtrl.displayBudget(budget);
 
+  }
+
+  function updatePercentages(){
+    // calculate percentages
+
+    //read the percentages from the budget controller
+
+    //update the percentages on UI
+  }
+
+
+  function ctrlDeleteItem(event) {
+    var getElemetID = event.target.parentNode.parentNode.id;
+    var splittedID = getElemetID.split('-');
+    var type = splittedID[0];
+    var ID = parseInt(splittedID[1]);
+
+    //delete item from data structure
+    budgetCtrl.deleteItem(type, ID);
+
+    //delete item from the UI
+    UICtrl.delListItem(getElemetID);
+    //show the updated budget
+    updateBudget();
   }
 
 
@@ -234,7 +288,9 @@ var trigger = (function (budgetCtrl, UICtrl) {
       UICtrl.addListItems(newItem, inputValues.type);
       //4. Update the budget
       updateBudget();
-    
+      //5. show updated percentages
+      
+
     }
   };
 
