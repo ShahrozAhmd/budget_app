@@ -87,7 +87,7 @@ var UIController = (function () {
       return {
         type: document.querySelector(getDataClasses.type).value,
         description: document.querySelector(getDataClasses.description).value,
-        value: document.querySelector(getDataClasses.value).value
+        value: parseFloat(document.querySelector(getDataClasses.value).value)
       }; //make public methods to use in other modules
 
     },
@@ -126,7 +126,7 @@ var UIController = (function () {
       fieldData.forEach(element => {
         element.value = '';
       });
-      fieldData[0].focus();      
+      fieldData[0].focus();
     }
   };
 })();
@@ -150,19 +150,29 @@ var trigger = (function (budgetCtrl, UICtrl) {
     });
   };
 
+  function updateBudget() {
+    // 1. Calculate the budget.
+    // 2. Return the budget
+    // 3. Update the budget in UI
+  }
+
 
 
   var triggerCtrl = function () {
 
+
+
     // 1. Get the data from the input field.
     var inputValues = UICtrl.inputData();
-    // 2. Add data to the budget controller.
-    var newItem = budgetCtrl.
-    generateItem(inputValues.type, inputValues.description, inputValues.value);
-    // 3. Add new item to the UI.
-    UICtrl.addListItems(newItem, inputValues.type);
-    // 4. Calculate the budget.
-    // 5. Update the budget on UI
+    if (inputValues.description != "" && !isNaN(inputValues.value) && inputValues.value > 0) {
+      // 2. Add data to the budget controller.
+      var newItem = budgetCtrl.
+      generateItem(inputValues.type, inputValues.description, inputValues.value);
+      // 3. Add new item to the UI.
+      UICtrl.addListItems(newItem, inputValues.type);
+      //4. Update the budget
+      updateBudget();
+    }
   };
 
   return {
