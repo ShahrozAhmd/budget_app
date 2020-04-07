@@ -61,14 +61,10 @@ var budgetController = (function () {
 
     },
 
-    test: function () {
-      return data;
-    }
+    // test: function () {
+    //   return data;
+    // }
   }
-
-
-
-
 })();
 
 
@@ -124,7 +120,13 @@ var UIController = (function () {
       }
       document.querySelector(htmlElement).insertAdjacentHTML('beforeend', html);
 
+      //clear the input fields:
+      var fieldData = document.querySelectorAll(`${getDataClasses.description},${getDataClasses.value}`);
 
+      fieldData.forEach(element => {
+        element.value = '';
+      });
+      fieldData[0].focus();      
     }
   };
 })();
