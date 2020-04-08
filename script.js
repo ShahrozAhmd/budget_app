@@ -15,14 +15,13 @@ var budgetController = (function () {
   Expenses.prototype.calcPercentage = function (totalIncome) {
     if (totalIncome > 0) {
       this.percentage = Math.round((this.val / totalIncome) * 100);
-    }
-    else{
+    } else {
       this.percentage = -1;
     }
 
   }
 
-  Expenses.prototype.getPercentage = function(){
+  Expenses.prototype.getPercentage = function () {
     return this.percentage;
   }
 
@@ -105,13 +104,13 @@ var budgetController = (function () {
 
     calculatePercentages: function () {
 
-      data.allIncExp.exp.forEach(function(curr){
+      data.allIncExp.exp.forEach(function (curr) {
         curr.calcPercentage(data.totals.inc);
       });
     },
 
-    getPercentages: function(){
-      var allPerc = data.allIncExp.exp.map(function(curr){
+    getPercentages: function () {
+      var allPerc = data.allIncExp.exp.map(function (curr) {
         return curr.getPercentage();
       });
       return allPerc;
@@ -143,10 +142,6 @@ var budgetController = (function () {
         percentage: data.percentage
       }
     },
-
-
-
-
     // test: function () {
     //   return data;
     // }
@@ -170,7 +165,8 @@ var UIController = (function () {
     totalIncome: '.total-income',
     totalExpense: '.total-expense',
     totalExpPer: '.total-exp-per',
-    mainContainer: '.main-container'
+    mainContainer: '.main-container',
+    smallPerShow: '.small-percentage-show'
   };
 
   return {
@@ -183,9 +179,13 @@ var UIController = (function () {
       }; //make public methods to use in other modules
 
     },
+
+
     dataClasses: function () {
       return getDataClasses;
     },
+
+
     addListItems: function (obj, type) {
 
       var html, htmlElement;
@@ -193,7 +193,7 @@ var UIController = (function () {
         htmlElement = getDataClasses.incomeContainer;
         html =
           `<div class="ie-bar magictime boingInUp" id = "inc-${obj.id}">
-        <span class="ie-sno">${obj.id}. </span>
+        <span class="ie-sno">${obj.id + 1}. </span>
         <h3 class="ie-bar-des">${obj.desc}</h3>
         <h4 class="ie-value">${obj.val}</h4>
         <span class="ie-cross-btn"><i class="fa fa-times-circle" style="padding: 2px;"></i></span>
@@ -203,7 +203,7 @@ var UIController = (function () {
         htmlElement = getDataClasses.expenseContainer;
         html =
           `<div class="ie-bar magictime boingInUp expense-only" id ="exp-${obj.id}">
-            <span class="ie-sno">${obj.id}. </span>
+            <span class="ie-sno">${obj.id + 1}. </span>
             <h3 class="ie-bar-des">${obj.desc}</h3>
             <span class="small-percentage-show">20%</span>
             <h4 class="ie-value">${obj.val}</h4>
@@ -220,6 +220,9 @@ var UIController = (function () {
       });
       fieldData[0].focus();
     },
+
+
+
     displayBudget: function (obj) {
       document.querySelector(getDataClasses.moneyLeft).textContent = obj.actualBudget;
       document.querySelector(getDataClasses.totalIncome).textContent = "+ " + obj.totalIncome;
@@ -230,6 +233,32 @@ var UIController = (function () {
         document.querySelector(getDataClasses.totalExpPer).textContent = "--";
       }
     },
+
+    displayPercentages: function (percArr) { //array of individual percentages 
+
+      var perTags = document.querySelectorAll(getDataClasses.smallPerShow);
+
+
+      var nodeForEach = function (list, callback) {
+        for (var i = 0; i < list.length; i++) {
+          callback(list[i], i);
+        }
+      }
+
+      nodeForEach(perTags, function (current, index) {
+        // console.log(percArr[index]);
+
+        if (percArr[index] > 0) {
+          current.innerHTML = percArr[index] + " %";
+          
+        } else {
+          current.innerHTML = "---";
+        }
+
+      });
+
+    },
+
     delListItem: function (selectorID) {
 
       var el = document.getElementById(selectorID);
@@ -276,15 +305,15 @@ var trigger = (function (budgetCtrl, UICtrl) {
   }
 
   function updatePercentages() {
-    
+
     // calculate percentages
     budgetCtrl.calculatePercentages();
 
     //read the percentages from the budget controller
     var percArr = budgetCtrl.getPercentages();
-    
+
     //update the percentages on UI
-    console.log(percArr);
+    UICtrl.displayPercentages(percArr);
   }
 
 
