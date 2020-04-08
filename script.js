@@ -166,7 +166,8 @@ var UIController = (function () {
     totalExpense: '.total-expense',
     totalExpPer: '.total-exp-per',
     mainContainer: '.main-container',
-    smallPerShow: '.small-percentage-show'
+    smallPerShow: '.small-percentage-show',
+    date: '.date'
   };
 
   return {
@@ -193,7 +194,7 @@ var UIController = (function () {
         htmlElement = getDataClasses.incomeContainer;
         html =
           `<div class="ie-bar magictime boingInUp" id = "inc-${obj.id}">
-        <span class="ie-sno">${obj.id + 1}. </span>
+        <span class="ie-sno">${obj.id + 1}.</span>
         <h3 class="ie-bar-des">${obj.desc}</h3>
         <h4 class="ie-value">${obj.val}</h4>
         <span class="ie-cross-btn"><i class="fa fa-times-circle" style="padding: 2px;"></i></span>
@@ -203,7 +204,7 @@ var UIController = (function () {
         htmlElement = getDataClasses.expenseContainer;
         html =
           `<div class="ie-bar magictime boingInUp expense-only" id ="exp-${obj.id}">
-            <span class="ie-sno">${obj.id + 1}. </span>
+            <span class="ie-sno">${obj.id + 1}.</span>
             <h3 class="ie-bar-des">${obj.desc}</h3>
             <span class="small-percentage-show">20%</span>
             <h4 class="ie-value">${obj.val}</h4>
@@ -250,7 +251,7 @@ var UIController = (function () {
 
         if (percArr[index] > 0) {
           current.innerHTML = percArr[index] + " %";
-          
+
         } else {
           current.innerHTML = "---";
         }
@@ -264,6 +265,16 @@ var UIController = (function () {
       var el = document.getElementById(selectorID);
       el.parentNode.removeChild(el);
 
+    },
+    displayDate: function () {
+      var dateElement = document.querySelector(getDataClasses.date);
+      var allMonths = ['January', 'February', 'March', 'April', 'May', 'June',
+       'July', 'August', 'September', 'October', 'November','December'];
+      var date = new Date();
+      var month = date.getMonth();
+      month = allMonths[month];
+      var year = date.getFullYear();
+      dateElement.textContent = `${month}, ${year}`;
     }
   };
 })();
@@ -358,6 +369,7 @@ var trigger = (function (budgetCtrl, UICtrl) {
 
   return {
     init: function () {
+      UICtrl.displayDate();
       eventHandler();
     }
   }
