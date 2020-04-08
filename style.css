@@ -247,6 +247,15 @@ option {
     rgba(228, 66, 54, 1) 53%
   );
 }
+.developer{
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  color: #616c6f;
+  font-size:0.6em ;
+
+
+}
 
 /* Media Querries */
 @media (max-width: 768px) {

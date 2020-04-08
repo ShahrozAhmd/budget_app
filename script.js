@@ -341,6 +341,8 @@ var trigger = (function (budgetCtrl, UICtrl) {
     UICtrl.delListItem(getElemetID);
     //show the updated budget
     updateBudget();
+    // update percentages of all expenses after deleting any income
+    updatePercentages();
   }
 
 
