@@ -30,4 +30,4 @@ jobs:
     - name: Installing Surge
       run: npm install -g surge
     - name: Deploy Site
-      run: surge ./ sherryapp.surge.sh --token ${{secrets.surge_token}}
+      run: surge ./ sherryapp.surge.sh --token ${{secrets.SURGE_TOKEN}}
